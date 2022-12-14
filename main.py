@@ -8,16 +8,12 @@ import cv2
 
 from flask_cors import CORS
 
-def create_app():
-    app = Flask(__name__,
+
+app = Flask(__name__,
             static_url_path='',
             static_folder='public')
-    return app
 
-app = create_app()
 CORS(app, support_credentials=True)
-
-
 
 DIR_PATH = dir_path = os.path.dirname(os.path.realpath(__file__))
 new_model = tf.keras.models.load_model(os.path.join(DIR_PATH, f'best_model.h5'))
@@ -44,8 +40,4 @@ def predict(image_id):
     os.remove(os.path.join(DIR_PATH, f'imgs/{image_id}'))
 
     return {'bean': bean_prediction}
-
-
-if __name__ == '__main__':
-    app.run(port=4242, debug=True)
     
