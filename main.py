@@ -9,10 +9,6 @@ import cv2
 from flask_cors import CORS
 
 
-app = Flask(__name__,
-            static_url_path='',
-            static_folder='public')
-
 CORS(app, support_credentials=True)
 
 DIR_PATH = dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -40,6 +36,14 @@ def predict(image_id):
     os.remove(os.path.join(DIR_PATH, f'imgs/{image_id}'))
 
     return {'bean': bean_prediction}
+
+def create_app():
+    app = Flask(__name__,
+            static_url_path='',
+            static_folder='public')
+    return app
+
+app = create_app()
 
 
 if __name__ == '__main__':
