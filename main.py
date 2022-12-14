@@ -9,7 +9,7 @@ import cv2
 from flask_cors import CORS
 
 
-app = Flask(_name_,
+app = Flask(__name__,
             static_url_path='',
             static_folder='public')
 
